@@ -1,5 +1,6 @@
 def pys = [
-    [name: 'Python 3.10', docker: '3.10-bullseye', tox:'py310,flake8', main: true],
+    [name: 'Python 3.11', docker: '3.11-bullseye', tox:'py311,flake8', main: true],
+    [name: 'Python 3.10', docker: '3.10-bullseye', tox:'py310', main: false],
     [name: 'Python 3.9',  docker: '3.9-bullseye',  tox:'py39', main: false],
     [name: 'Python 3.8',  docker: '3.8-bullseye',  tox:'py38', main: false],
     [name: 'Python 3.7',  docker: '3.7-bullseye',  tox:'py37', main: false],
@@ -75,7 +76,7 @@ pys.each { py ->
 parallel(tasks)
 parallel modern: {
         stage('Modern Windows binary') {
-            windowsBuild('3.10', 'dosage.exe')
+            windowsBuild('3.11', 'dosage.exe')
         }
     },
     legacy: {
